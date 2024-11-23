@@ -76,7 +76,7 @@ python scraper.py
 
 **Santiago Ospina Ferreira**  
 - 💼 [LinkedIn](https://www.linkedin.com/in/ospinaferreira/)  
-- 📫 ospinafsantiago@javeriana.edu.co  
+- 📫 santiospina910@gmail.com
 
 ---
 
