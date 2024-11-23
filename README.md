@@ -89,4 +89,4 @@ This project is licensed under the [MIT License](LICENSE).
 If you'd like to contribute or suggest improvements, feel free to create an issue or submit a pull request.
 
 ### 📝 Disclaimer  
-Future versions won't have the comments and variables in Spanglish—**promise!** 😅
+Future versions won't have the comments and variables in Spanglish—**lo prometo!** jajjaja 🫣
