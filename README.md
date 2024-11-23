@@ -3,8 +3,9 @@
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Santiago%20Ospina-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/ospinaferreira/)  
 
-Effortlessly scrape Colombian XBRLs and PDFs for the enterprises you need. Just set the parameters and let the script do the work!  
+Effortlessly scrape Colombian XBRLs and accounting PDFs for the enterprises you need. Just set the parameters, and let the script do the work!
 
+XBRL (eXtensible Business Reporting Language) is a global standard for exchanging financial data using XML. It simplifies the reporting, sharing, and analysis of financial information, enabling companies, regulators, and investors to access, compare, and process data consistently and automatically.
 ---
 
 ## 🚀 Features  
