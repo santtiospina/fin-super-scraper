@@ -23,7 +23,7 @@ XBRL (eXtensible Business Reporting Language) is a global standard for exchangin
 ### Step 1: Clone the Repository  
 ```bash
 git clone https://github.com/fin-super-scraper.git
-cd your-repo-name
+cd fin-super-scraper
 ```
 
 ### Step 2: Define Your Parameters  
