@@ -70,7 +70,8 @@ def scrape_data(driver, nits, anios, tipos_reporte, periodos, download_path):
                             )
                             informes_financieros.click()
                         except Exception as e:
-                            print(f"Error al intentar dar clic en 'Informes financieros bajo NIIF y anexos': {e}")
+                            logging.error(f"Error al intentar dar clic en 'Informes financieros bajo NIIF y anexos': {e}")
+                        
                         time.sleep(0.5)
                         # endregion
 
@@ -133,7 +134,7 @@ def scrape_data(driver, nits, anios, tipos_reporte, periodos, download_path):
                         time.sleep(2)
                         # endregion
 
-                        # region Descargar archivo XBRL
+                        # region Download XBRL
 
                         try:
                             xbrl_button = WebDriverWait(driver, 10).until(
@@ -157,9 +158,10 @@ def scrape_data(driver, nits, anios, tipos_reporte, periodos, download_path):
                             )
                             click_element_with_retry(driver, boton_cerrar)
                         except TimeoutException as e:
-                            print(f"* XBRL not found: {nit} {periodo_elegir} {anio_elegir}")
+                            logging.error(f"* XBRL not found: {nit} {periodo_elegir} {anio_elegir}")
+                            # print(f"* XBRL not found: {nit} {periodo_elegir} {anio_elegir}")
 
-                        # Descargar PDF
+                        # Download PDF
                         try:
                             pdf_button = WebDriverWait(driver, 10).until(
                                 EC.element_to_be_clickable(
@@ -185,17 +187,20 @@ def scrape_data(driver, nits, anios, tipos_reporte, periodos, download_path):
                             )
                             click_element_with_retry(driver, boton_cerrar)
                         except TimeoutException as e:
-                            print(f"* PDF not found: {nit} {periodo_elegir} {anio_elegir}")
-
+                            logging.error(f"* PDF not found: {nit} {periodo_elegir} {anio_elegir}")
+                        
                         try:
                             rename_files(nit, periodo_elegir[0:3].lower(), anio_elegir, download_path)
                         except Exception as e:
-                            print(f"Error while renaming files: {e}")
+                            logging.error(f"Error while renaming files: {e}")
+                        
                         time.sleep(2)
+                        
                         try:
                             rename_files(nit, periodo_elegir[0:3].lower(), anio_elegir, download_path)
                         except Exception as e:
-                            print(f"Error while renaming files: {e}")
+                            logging.error(f"Error while renaming files: {e}")
+
                         # endregion
 
                         # endregion
@@ -209,12 +214,30 @@ def scrape_data(driver, nits, anios, tipos_reporte, periodos, download_path):
 def main():
     load_dotenv()
     
-    download_path = "/Users/santiospina/Documents/8 Semestre/Banrep/Scraping/finance_market_scraping/scraped_files"
+    # define the path where the files will be downloaded:
+    download_path = "/Users/santiospina/Documents/Projects/finance_market_scraping/scraped_files"
+    
     driver = setup_driver(download_path)
     logging.basicConfig(filename="logs/app.log", level=logging.INFO, format="%(asctime)s - %(message)s")
 
     # parameters
-    nits = ["800167643", "800169499"]
+    
+    '''
+    # NITs with both XBRL and PDF (this may vary: written in nov 2024)
+    nits = [
+    "800167643", "800169499", "800216181", "800226766", "800242106", "800249860", 
+    "811000740", "811010754", "811012271", "811019012", "811026226", "811030322", 
+    "817000676", "830025448", "830029703", "830095213", "830112317", "830122566", 
+    "860002464", "860002541", "860002554", "860003012", "860005223", "860025674", 
+    "860028601", "860029995", "860053930", "860063875", "890100251", "890105526", 
+    "890205952", "890208395", "890300440", "890300604", "890301884", "890302567", 
+    "890302594", "890309496", "890318252", "890321567", "890400869", "890900050", 
+    "890900099", "890900259", "890900266", "890900285", "890900308", "890900608", 
+    "890901110", "890903474", "890914525", "890922447", "891301592", "891301676", 
+    "891900101", "900087414", "900430878", "900591195", "901544345"
+    '''
+
+    nits = [ "900430878", "900087414"]
     anios = ["2024"]
     tipos_reporte = ["Intermedios"]
     periodos = ["Septiembre"]
@@ -226,7 +249,8 @@ def main():
         try:
             rename_files(nits[-1], periodos[-1][0:3].lower(), anios[-1], download_path)
         except Exception as e:
-            print(f"Error while renaming files: {e}")
+            logging.error(f"Error while renaming files: {e}")
+
         driver.quit()
 
 if __name__ == "__main__":

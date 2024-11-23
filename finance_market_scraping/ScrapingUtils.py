@@ -47,7 +47,9 @@ def click_element_with_retry(driver, element, retries=30, wait_time=1):
 
 def celebrate(driver, anio_elegir, periodo_elegir, tipo_reporte_elegir):
     """
-    Adds celebratory effects to the webpage.
+    Celébralo curramba.
+
+    Adds celebratory effects to the webpage (just for fun).
 
     Args:
         driver: Selenium WebDriver instance.
